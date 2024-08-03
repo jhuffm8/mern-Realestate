@@ -20,7 +20,6 @@ export const signin = async (req, res, next) => {
   try {
     // finding user by email
     const validUser = await User.findOne({ email });
-
     //checking if user email is valid
     if (!validUser) return next(errorHandler(404, "User not found!"));
     //using built in bycrypt functions to check in hash password is valid
