@@ -21,11 +21,11 @@ const handleSubmit = async (e) => {
     setLoading(true);
     const res = await axios.post('/api/auth/signup', formData);
     console.log(res.data)
-    // if (res.data.success === false){
-    //   setLoading(false)
-    //   setError(res.data.response.data.message)
-    //   return;
-    // }
+    if (res.data.success === false){
+      setLoading(false)
+      setError(res.data.response.data.message)
+      return;
+    }
 
     setLoading(false);
     setError(null);
