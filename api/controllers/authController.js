@@ -39,9 +39,13 @@ export const signin = async (req, res, next) => {
   }
 };
 
+//using google auth to create/sign in 
 export const google = async (req, res, next) => {
+
+  //looking for user
   try {
     const user = await User.findOne({ email: req.body.email });
+    // if user found then sign in wth google auth 
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
       const { password: password, ...rest } = user._doc;
@@ -50,6 +54,7 @@ export const google = async (req, res, next) => {
         .status(200)
         .json(rest);
     } else {
+      //if not found then create user and password by creating a 16 case random and then hashing password
       const generatedPassword =
         Math.random().toString(36).slice(-8) +
         Math.random().toString(36).slice(-8);
