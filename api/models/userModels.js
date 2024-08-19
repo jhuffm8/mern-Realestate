@@ -16,7 +16,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: "String",
         required: true,  
-    }
+    },
+    avatar: {
+        type: String,
+        default: "https://www.kindpng.com/picc/m/22-223965_no-profile-picture-icon-circle-member-icon-png.png",
+    },
 
 }, {timestamps: true});
 
