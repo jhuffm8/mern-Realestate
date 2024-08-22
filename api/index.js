@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import userRouter from './routes/userRoute.js'
 import authRouter from './routes/authRoute.js'
+import cookieParser from "cookie-parser"
 
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("Connected to MongoDB")
@@ -14,6 +15,8 @@ mongoose.connect(process.env.MONGO).then(() => {
 const app = express()
 
 app.use(express.json())
+
+app.use(cookieParser())
 
 app.listen(3000, () => {
     console.log('Listening on port 3000')
